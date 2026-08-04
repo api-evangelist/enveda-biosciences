@@ -1,0 +1,75 @@
+generated: '2026-08-04'
+method: probed
+source: live GET probes of the /.well-known/ surface on every enveda.com host, 2026-08-04
+host: https://enveda.com
+note: >-
+  Enveda serves no /.well-known/ discovery document at all. Every RFC 8615 path below returned
+  the WordPress 404 page (text/html), including the two agent-card paths. Recorded as observed
+  — absence is valid data, and nothing was authored on Enveda's behalf. There is no separate
+  API host: api.enveda.com and docs.enveda.com do not resolve in DNS, so enveda.com (and its
+  www alias) is the only host with a discovery surface to probe.
+hosts_probed:
+- host: enveda.com
+  resolves: true
+- host: www.enveda.com
+  resolves: true
+- host: api.enveda.com
+  resolves: false
+  note: NXDOMAIN — no API host
+- host: docs.enveda.com
+  resolves: false
+  note: NXDOMAIN — no docs host
+documents:
+- path: /.well-known/security.txt
+  spec: RFC 9116
+  status: 404
+- path: /.well-known/openid-configuration
+  spec: OpenID Connect Discovery 1.0
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  spec: RFC 8414
+  status: 404
+- path: /.well-known/oauth-protected-resource
+  spec: RFC 9728
+  status: 404
+- path: /.well-known/api-catalog
+  spec: RFC 9727
+  status: 404
+- path: /.well-known/ai-plugin.json
+  spec: OpenAI plugin manifest
+  status: 404
+- path: /.well-known/agent-card.json
+  spec: A2A 1.0.0
+  status: 404
+  also_probed_on: www.enveda.com (404)
+- path: /.well-known/agent.json
+  spec: A2A pre-0.3 legacy
+  status: 404
+  also_probed_on: www.enveda.com (404)
+- path: /.well-known/dnt-policy.txt
+  spec: EFF Do Not Track policy
+  status: 404
+adjacent_discovery_found:
+- path: /llms.txt
+  status: 200
+  content_type: text/plain
+  file: ../llms/enveda-biosciences-llms.txt
+  note: >-
+    Not a /.well-known/ document, but the one machine-readable discovery file Enveda actually
+    publishes. Saved verbatim; wired as type LLMsTxt.
+- path: /robots.txt
+  status: 200
+  note: >-
+    Explicitly ALLOWS the AI crawlers by name — GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot,
+    Claude-Web, anthropic-ai, PerplexityBot, Perplexity-User, Applebot, Applebot-Extended and
+    Google-Extended are each given an Allow: / rule. Only /wp-admin/ is disallowed.
+- path: /wp-json/
+  status: 200
+  content_type: application/json
+  note: >-
+    The WordPress REST route-discovery document — 341 routes across 22 namespaces. This is the
+    real machine-readable contract on enveda.com and is the source the OpenAPI in openapi/ was
+    derived from. Saved at openapi/_source/enveda-biosciences-wp-json-root.json.
+- path: /sitemap.xml
+  status: 200
+  note: Rank Math sitemap index (post, page, news, category, person-category, news-category).

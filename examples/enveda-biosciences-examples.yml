@@ -1,0 +1,142 @@
+generated: '2026-08-04'
+method: probed
+source: live GET requests against https://enveda.com/wp-json/wp/v2 on 2026-08-04
+api: enveda-biosciences:content
+spec: openapi/enveda-biosciences-content-openapi.yml
+note: >-
+  Real response payloads captured verbatim from the live enveda.com WordPress REST API. Enveda
+  publishes no examples of its own and the derived OpenAPI carries none, so these were PROBED,
+  not authored. Every value below came back from an anonymous GET; nothing is synthetic and no
+  field was edited except the trimming noted on each entry. All requests are anonymous and
+  read-only.
+conventions:
+  anonymous_read: true
+  trimming_param: >-
+    _fields — a comma-separated list of top-level fields, used on most captures below to keep
+    them readable
+  expansion_param: _embed — inlines author, wp:featuredmedia and wp:term into _embedded
+  pagination_headers: [X-WP-Total, X-WP-TotalPages]
+examples:
+- operationId: getNews
+  request: GET /wp/v2/news?per_page=1&_fields=id,date,slug,status,type,link,title,excerpt,news-category
+  status: 200
+  content_type: application/json; charset=UTF-8
+  response_headers:
+    X-WP-Total: '34'
+    X-WP-TotalPages: '34'
+    Link: <https://enveda.com/wp-json/wp/v2/news?per_page=1&page=2>; rel="next"
+  truncation: per_page=1 and _fields applied on the request; the body below is the complete response
+  response:
+  - id: 1098
+    date: '2026-07-23T16:56:37'
+    slug: envedas-positive-phase-1b-results-for-env-294-a-potential-first-in-class-oral-therapy-for-moderate-to-severe-atopic-dermatitis-were-presented-at-aad-innovation-academy-additional-details-t
+    status: publish
+    type: news
+    link: https://enveda.com/news/envedas-positive-phase-1b-results-for-env-294-a-potential-first-in-class-oral-therapy-for-moderate-to-severe-atopic-dermatitis-were-presented-at-aad-innovation-academy-additional-details-t/
+    title:
+      rendered: "Enveda’s Positive Phase 1B Results for ENV-294, a Potential First-in-Class Oral Therapy for Moderate-to-Severe Atopic Dermatitis, Were Presented at AAD Innovation Academy; Additional Details to Be Shared at EADV"
+    news-category:
+    - 11
+- operationId: getPerson
+  request: GET /wp/v2/person?per_page=1&_fields=id,slug,link,title,person-category,featured_media
+  status: 200
+  content_type: application/json; charset=UTF-8
+  response_headers:
+    X-WP-Total: '31'
+  truncation: per_page=1 and _fields applied; body below is complete
+  response:
+  - id: 830
+    slug: akshay-rai
+    link: https://enveda.com/person/akshay-rai/
+    title:
+      rendered: Akshay Rai
+    person-category:
+    - 7
+- operationId: getPersonCategory
+  request: GET /wp/v2/person-category?per_page=10&_fields=id,name,slug,count
+  status: 200
+  content_type: application/json; charset=UTF-8
+  truncation: _fields applied; all 5 terms returned
+  response:
+  - {id: 8, count: 9, name: Advisors, slug: advisors}
+  - {id: 7, count: 7, name: Board, slug: board}
+  - {id: 5, count: 0, name: CEO, slug: ceo}
+  - {id: 9, count: 0, name: Investors &amp; Partners, slug: investors-partners}
+  - {id: 6, count: 15, name: Leadership, slug: leadership}
+  note: >-
+    name is returned HTML-escaped by the API ("Investors &amp; Partners") — reproduced verbatim.
+- operationId: getWpslStores
+  request: GET /wp/v2/wpsl_stores?per_page=2&_fields=id,slug,title,wpsl_store_category,link
+  status: 200
+  content_type: application/json; charset=UTF-8
+  response_headers:
+    X-WP-Total: '40'
+  truncation: per_page=2 and _fields applied; body below is complete
+  response:
+  - id: 1093
+    slug: icahn-school-of-medicine-at-mount-sinai
+    title:
+      rendered: Icahn School of Medicine at Mount Sinai
+    link: https://enveda.com/?wpsl_stores=icahn-school-of-medicine-at-mount-sinai
+    wpsl_store_category:
+    - 21
+  - id: 1091
+    slug: focus-clinical-research
+    title:
+      rendered: Focus Clinical Research
+    link: https://enveda.com/?wpsl_stores=focus-clinical-research
+    wpsl_store_category:
+    - 21
+  note: >-
+    These are clinical-trial site listings surfaced by the WP Store Locator plugin. The `link`
+    is a query-string permalink because the post type has no public single-view route.
+- operationId: getIssue
+  request: GET /wp/v2/issue?per_page=1
+  status: 200
+  content_type: application/json; charset=UTF-8
+  truncation: per_page=1; _links and acf trimmed from the body below for readability
+  response:
+  - id: 12
+    count: 4
+    description: ''
+    link: https://enveda.com/issue/foundations/
+    name: Foundations
+    slug: foundations
+    taxonomy: issue
+    parent: 0
+    meta: []
+    acf: []
+- operationId: getSearch
+  request: GET /wp/v2/search?search=PRISM&per_page=3
+  status: 200
+  content_type: application/json; charset=UTF-8
+  truncation: >-
+    one result returned for this query; _links.self/about/collection trimmed. The self href
+    (https://enveda.com/wp-json/wp/v2/posts/144) is how a search pointer is resolved to the
+    full object.
+  response:
+  - id: 144
+    title: "PRISM: A foundation model for life’s chemistry"
+    url: https://enveda.com/prism-a-foundation-model-for-lifes-chemistry/
+    type: post
+    subtype: post
+- operationId: getPosts
+  request: GET /wp/v2/posts?per_page=1&_fields=id
+  status: 200
+  content_type: application/json; charset=UTF-8
+  response_headers:
+    X-WP-Total: '8'
+    X-WP-TotalPages: '8'
+  note: >-
+    Included as the collection-size observation for the In-Veda blog; the full payload shape is
+    the same as getNews above.
+gated_surfaces:
+- operationId: null
+  request: 'POST /wp-json/mcp/mcp-adapter-default-server {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  status: 401
+  response: {code: rest_forbidden, message: Sorry, you are not allowed to do that., data: {status: 401}}
+  note: Captured verbatim; this is the error-envelope example in errors/enveda-biosciences-problem-types.yml.
+- operationId: null
+  request: GET /wp-json/wp-abilities/v1/abilities
+  status: 401
+  response: {code: rest_forbidden, message: Sorry, you are not allowed to do that., data: {status: 401}}

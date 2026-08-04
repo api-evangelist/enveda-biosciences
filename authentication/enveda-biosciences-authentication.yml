@@ -1,0 +1,15 @@
+generated: '2026-08-04'
+method: derived
+source: openapi/enveda-biosciences-content-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: applicationPassword
+  type: http
+  scheme: basic
+  description: WordPress Application Passwords, advertised by the site at https://enveda.com/wp-json/
+    under authentication.application-passwords; authorization endpoint https://enveda.com/wp-admin/authorize-application.php.
+    Read operations on wp/v2 are anonymous.
+  sources:
+  - openapi/enveda-biosciences-content-openapi.yml

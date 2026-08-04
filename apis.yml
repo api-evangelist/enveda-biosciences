@@ -1,18 +1,95 @@
 aid: enveda-biosciences
 name: Enveda
-description: 'Enveda is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Enveda (Enveda Biosciences) is a Boulder, Colorado based clinical-stage
+  biotechnology company founded in 2019 that discovers medicines by decoding the chemistry of
+  the natural world. It combines high-throughput mass spectrometry, metabolomics, robotics and
+  machine learning — including PRISM, a foundation model trained on more than a billion small-
+  molecule mass spectra — to build a searchable library of plant-derived molecules and translate
+  them into drug candidates. Enveda has raised over $360M across Series B, C and D rounds from
+  Premji Invest, Kinnevik, Lux Capital, Dimension and Sanofi, reached unicorn status in 2026,
+  and runs FDA-cleared clinical programs including ENV-294 (atopic dermatitis and asthma),
+  ENV-308 (obesity) and ENV-6946 (inflammatory bowel disease). Enveda publishes no product or
+  developer API; the machine-readable surface on enveda.com is a published llms.txt plus the
+  WordPress REST API (wp/v2) that serves the company newsroom, In-Veda blog, leadership
+  profiles, clinical-trial site directory and media library as JSON, alongside a WordPress MCP
+  Adapter endpoint that is present but authentication-gated. Its open science is published as
+  research code and data in the github.com/enveda organization.'
 url: https://raw.githubusercontent.com/api-evangelist/enveda-biosciences/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment-pipeline
+image: https://enveda.com/wp-content/uploads/2026/06/cropped-enveda-favicon.jpg
 specificationVersion: '0.20'
 created: '2026-08-04'
 modified: '2026-08-04'
 tags:
 - Company
-apis: []
+- Biotechnology
+- Drug Discovery
+- Life Sciences
+- Artificial Intelligence
+- Machine Learning
+- Metabolomics
+- Natural Products
+- Pharmaceuticals
+- Clinical Trials
+- Research
+- Content
+apis:
+- aid: enveda-biosciences:content
+  name: Enveda Content API (WordPress REST wp/v2)
+  description: 'The anonymously readable WordPress REST API that enveda.com serves at
+    /wp-json/wp/v2 — news releases (the `news` custom post type, 34 published), In-Veda blog
+    posts, marketing and clinical-trial recruitment pages, leadership / board / advisor profiles
+    (`person`, 31 published), a clinical-trial site directory (`wpsl_stores`, 40 published), the
+    media library, taxonomies and a site-wide search endpoint, all as JSON with page/per_page
+    pagination and X-WP-Total / X-WP-TotalPages headers. This is the CMS content API, not an
+    Enveda product API; Enveda publishes no OpenAPI for it, so the definition in this repo was
+    derived mechanically from the live route-discovery document at https://enveda.com/wp-json/.'
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Content
+  - News
+  - People
+  - Clinical Trials
+  - Search
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-content-openapi.yml
+  - type: Overlay
+    url: overlays/enveda-biosciences-content-overlay.yaml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:mcp
+  name: Enveda MCP Server (WordPress MCP Adapter)
+  description: 'A Model Context Protocol server endpoint advertised in the enveda.com WordPress
+    REST route index under the "mcp" namespace and served at
+    /wp-json/mcp/mcp-adapter-default-server. The endpoint is live but authentication-gated: an
+    anonymous JSON-RPC tools/list returns HTTP 401 rest_forbidden, as does initialize and the
+    companion wp-abilities/v1 abilities registry, so the published tool set could not be
+    enumerated.'
+  humanURL: https://enveda.com/wp-json/mcp
+  baseURL: https://enveda.com/wp-json/mcp/mcp-adapter-default-server
+  tags:
+  - MCP
+  - Agents
+  properties:
+  - type: MCPServer
+    url: mcp/enveda-biosciences-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/enveda-biosciences-tool-crosswalk.yml
+x-enrichment:
+  date: '2026-08-04'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +97,54 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://enveda.com/
+- type: About
+  url: https://enveda.com/purpose/
+- type: Blog
+  url: https://enveda.com/in-veda/
+- type: BlogRSS
+  url: https://enveda.com/feed/
+- type: News
+  url: https://enveda.com/news/
+- type: Press
+  url: https://enveda.com/press/
+- type: Support
+  url: https://enveda.com/contact/
+- type: Careers
+  url: https://enveda.com/careers/
+- type: Team
+  url: https://enveda.com/people/
+- type: Technology
+  url: https://enveda.com/platform/
+- type: Pipeline
+  url: https://enveda.com/pipeline/
+- type: TermsOfService
+  url: https://enveda.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://enveda.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/enveda
+- type: LinkedIn
+  url: https://www.linkedin.com/company/envedabio
+- type: Packages
+  url: packages/enveda-biosciences-packages.yml
+- type: LLMsTxt
+  url: llms/enveda-biosciences-llms.txt
+- type: WellKnown
+  url: well-known/enveda-biosciences-well-known.yml
+- type: Authentication
+  url: authentication/enveda-biosciences-authentication.yml
+- type: Conventions
+  url: conventions/enveda-biosciences-conventions.yml
+- type: Conformance
+  url: conformance/enveda-biosciences-conformance.yml
+- type: Lifecycle
+  url: lifecycle/enveda-biosciences-lifecycle.yml
+- type: DomainSecurity
+  url: security/enveda-biosciences-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/enveda-biosciences-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: SecondaryMarket
   url: https://forgeglobal.com/enveda-biosciences_stock/

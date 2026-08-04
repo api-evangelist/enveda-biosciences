@@ -1,0 +1,162 @@
+generated: '2026-08-04'
+method: derived
+source: >-
+  openapi/enveda-biosciences-content-openapi.yml plus live GET payloads observed on
+  /wp-json/wp/v2/{news,person,wpsl_stores,issue,person-category,search} 2026-08-04
+api: enveda-biosciences:content
+note: >-
+  Entity graph of the enveda.com WordPress content API. Relationships are derived from the
+  id-reference fields and _links relations present on real payloads — nothing inferred beyond
+  what the API returns. Counts are the X-WP-Total observed at harvest time.
+entities:
+- name: news
+  collection: /wp/v2/news
+  description: >-
+    Enveda news release / press item. Custom post type. 34 published — funding rounds, IND
+    clearances, Phase 1/1b/2 readouts, executive appointments, press pickups.
+  id: {field: id, type: integer}
+  count_observed: 34
+  key_fields: [id, date, date_gmt, modified, slug, status, type, link, title, content, excerpt,
+    author, featured_media, template, news-category, meta, acf]
+  operations: [getNews, getNewsById, createNews, createNewsById, updateNewsById, patchNewsById,
+    deleteNewsById]
+- name: news-category
+  collection: /wp/v2/news-category
+  description: Taxonomy term classifying news items. 2 terms.
+  id: {field: id, type: integer}
+  count_observed: 2
+  key_fields: [id, count, description, link, name, slug, taxonomy, parent, meta, acf]
+  operations: [getNewsCategory, getNewsCategoryById]
+- name: post
+  collection: /wp/v2/posts
+  description: >-
+    In-Veda editorial blog post. 8 published — e.g. "PRISM: A foundation model for life's
+    chemistry", "The Chemical Code: An Opportunity Bigger Than The Genetic Code".
+  id: {field: id, type: integer}
+  count_observed: 8
+  key_fields: [id, date, modified, slug, status, type, link, title, content, excerpt, author,
+    featured_media, sticky, format, categories, tags, issue, meta, acf]
+  operations: [getPosts, getPostsById, createPosts, updatePostsById, deletePostsById]
+- name: page
+  collection: /wp/v2/pages
+  description: >-
+    Marketing / clinical-trial page. 26 published — platform, pipeline, purpose, people,
+    careers, contact, animal-health, alchemy, plus the atopic-dermatitis and asthma trial
+    recruitment funnels and their Spanish-language variants.
+  id: {field: id, type: integer}
+  count_observed: 26
+  key_fields: [id, slug, title, content, parent, menu_order, template, acf]
+  operations: [getPages, getPagesById]
+- name: person
+  collection: /wp/v2/person
+  description: >-
+    Leadership, board, advisor or team profile. Custom post type. 31 published.
+  id: {field: id, type: integer}
+  count_observed: 31
+  key_fields: [id, slug, link, title, content, featured_media, person-category, acf]
+  operations: [getPerson, getPersonById]
+- name: person-category
+  collection: /wp/v2/person-category
+  description: >-
+    Taxonomy grouping people. 5 terms observed live: Advisors (9), Board (7), Leadership (15),
+    CEO (0), "Investors & Partners" (0).
+  id: {field: id, type: integer}
+  count_observed: 5
+  key_fields: [id, count, name, slug, taxonomy, parent]
+  operations: [getPersonCategory, getPersonCategoryById]
+- name: wpsl_stores
+  collection: /wp/v2/wpsl_stores
+  description: >-
+    Clinical-trial site listing, published through the WP Store Locator plugin and used as the
+    trial-site finder on the atopic-dermatitis and asthma recruitment pages. 40 published —
+    e.g. "Icahn School of Medicine at Mount Sinai", "Focus Clinical Research". This is the most
+    substantive non-editorial dataset on the API.
+  id: {field: id, type: integer}
+  count_observed: 40
+  key_fields: [id, slug, title, content, author, wpsl_store_category, acf, link]
+  operations: [getWpslStores, getWpslStoresById]
+- name: wpsl_store_category
+  collection: /wp/v2/wpsl_store_category
+  description: Taxonomy grouping trial sites. 2 terms.
+  id: {field: id, type: integer}
+  count_observed: 2
+  key_fields: [id, count, name, slug, taxonomy, parent]
+  operations: [getWpslStoreCategory, getWpslStoreCategoryById]
+- name: issue
+  collection: /wp/v2/issue
+  description: >-
+    Editorial "issue" taxonomy applied to In-Veda posts. 2 terms, e.g. "Foundations" (count 4).
+  id: {field: id, type: integer}
+  count_observed: 2
+  key_fields: [id, count, description, link, name, slug, taxonomy, parent]
+  operations: [getIssue, getIssueById]
+- name: media
+  collection: /wp/v2/media
+  description: Media library attachment (images, logos, press assets, documents). 262 published.
+  id: {field: id, type: integer}
+  count_observed: 262
+  key_fields: [id, source_url, media_type, mime_type, media_details, alt_text, post, author]
+  operations: [getMedia, getMediaById]
+- name: category
+  collection: /wp/v2/categories
+  description: Core post category term. 2 terms.
+  id: {field: id, type: integer}
+  count_observed: 2
+  key_fields: [id, name, slug, parent, count, taxonomy]
+  operations: [getCategories, getCategoriesById]
+- name: tag
+  collection: /wp/v2/tags
+  description: Core post tag term. 0 published — tags are unused on this site.
+  id: {field: id, type: integer}
+  count_observed: 0
+  key_fields: [id, name, slug, count, taxonomy]
+  operations: [getTags, getTagsById]
+- name: comment
+  collection: /wp/v2/comments
+  description: Comment on a post. 0 published — commenting is closed site-wide.
+  id: {field: id, type: integer}
+  count_observed: 0
+  key_fields: [id, post, parent, author, author_name, date, content, status]
+  operations: [getComments, getCommentsById]
+- name: user
+  collection: /wp/v2/users
+  description: >-
+    Content author. 6 exposed. These are CMS editor accounts, not Enveda staff profiles —
+    staff live in `person`.
+  id: {field: id, type: integer}
+  count_observed: 6
+  key_fields: [id, name, slug, description, link, avatar_urls]
+  operations: [getUsers, getUsersById, getUsersMe]
+- name: search_result
+  collection: /wp/v2/search
+  description: >-
+    Lightweight cross-type search pointer. Returns {id, title, url, type, subtype} plus a
+    _links.self href that resolves to the full object.
+  id: {field: id, type: integer}
+  key_fields: [id, title, url, type, subtype]
+  operations: [getSearch]
+relationships:
+- {from: news, to: news-category, kind: has_many, via: 'news-category (array of term ids)'}
+- {from: news, to: media, kind: has_one, via: featured_media}
+- {from: news, to: user, kind: belongs_to, via: author}
+- {from: post, to: category, kind: has_many, via: 'categories (array of term ids)'}
+- {from: post, to: tag, kind: has_many, via: 'tags (array of term ids)'}
+- {from: post, to: issue, kind: has_many, via: 'issue (array of term ids)'}
+- {from: post, to: media, kind: has_one, via: featured_media}
+- {from: post, to: user, kind: belongs_to, via: author}
+- {from: page, to: page, kind: belongs_to, via: parent}
+- {from: page, to: media, kind: has_one, via: featured_media}
+- {from: person, to: person-category, kind: has_many, via: 'person-category (array of term ids)'}
+- {from: person, to: media, kind: has_one, via: featured_media}
+- {from: wpsl_stores, to: wpsl_store_category, kind: has_many, via: 'wpsl_store_category (array of term ids)'}
+- {from: wpsl_stores, to: user, kind: belongs_to, via: author}
+- {from: comment, to: post, kind: belongs_to, via: post}
+- {from: media, to: post, kind: belongs_to, via: post}
+- {from: search_result, to: post, kind: has_one, via: '_links.self href (subtype-dependent)'}
+- {from: news-category, to: news-category, kind: belongs_to, via: parent}
+traversal:
+  embed_param: _embed
+  note: >-
+    _embed inlines author, wp:featuredmedia and wp:term into _embedded, resolving every
+    has_one/has_many above in a single request.
+render: null

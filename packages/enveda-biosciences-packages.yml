@@ -1,0 +1,113 @@
+generated: '2026-08-04'
+method: searched
+source: https://github.com/enveda
+note: >-
+  Enveda ships no API client library or SDK — it publishes no product API to wrap. The
+  github.com/enveda organization ("Learning from Life", 37 public repositories) does publish
+  first-party research software: code and data repositories that accompany the company's
+  published metabolomics, mass-spectrometry and drug-discovery papers. None of it is an API
+  client, and none of it is distributed through a package registry — every repository is
+  install-from-source (git clone / notebook). Registries probed 2026-08-04 with no first-party
+  hit: npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, crates.io. (PyPI
+  `alphatims` exists but belongs to the Mann Labs / MannLabs project, which Enveda forks — it
+  is not an Enveda package.)
+sdk_count: 0
+api_clients: 0
+packages:
+- language: python
+  registry: github
+  name: NMR-Networking
+  url: https://github.com/enveda/NMR-Networking
+  install: git clone https://github.com/enveda/NMR-Networking
+  official: true
+  api_client: false
+  description: >-
+    HSQC molecular-networking code published alongside Enveda's NMR structure-elucidation work.
+- language: python
+  registry: github
+  name: hgraph2graph
+  url: https://github.com/enveda/hgraph2graph
+  install: git clone https://github.com/enveda/hgraph2graph
+  official: false
+  api_client: false
+  description: >-
+    Hierarchical generation of molecular graphs using structural motifs — an Enveda-maintained
+    fork of upstream research code, not an original Enveda package.
+- language: python
+  registry: github
+  name: sapbert
+  url: https://github.com/enveda/sapbert
+  install: git clone https://github.com/enveda/sapbert
+  official: false
+  api_client: false
+  description: >-
+    SapBERT biomedical entity-linking model code, forked into the Enveda org for internal
+    biomedical NLP work.
+- language: jupyter-notebook
+  registry: github
+  name: enveda-180
+  url: https://github.com/enveda/enveda-180
+  install: git clone https://github.com/enveda/enveda-180
+  official: true
+  api_client: false
+  description: >-
+    Code to reproduce "Enveda-180" — a large open multimodal MS/MS and ion-mobility spectral
+    library. Enveda's most consequential open data release.
+- language: jupyter-notebook
+  registry: github
+  name: computational-metabolomics-review
+  url: https://github.com/enveda/computational-metabolomics-review
+  install: git clone https://github.com/enveda/computational-metabolomics-review
+  official: true
+  api_client: false
+  description: >-
+    "Trends in Computational Metabolomics (2021–2025)" — the org's most-starred repository (47).
+- language: jupyter-notebook
+  registry: github
+  name: kgem-ensembles-in-drug-discovery
+  url: https://github.com/enveda/kgem-ensembles-in-drug-discovery
+  install: git clone https://github.com/enveda/kgem-ensembles-in-drug-discovery
+  official: true
+  api_client: false
+  description: >-
+    Source code and data for "Ensembles of knowledge graph embedding models improve predictions
+    for drug discovery".
+- language: jupyter-notebook
+  registry: github
+  name: RPath
+  url: https://github.com/enveda/RPath
+  install: git clone https://github.com/enveda/RPath
+  official: true
+  api_client: false
+  description: >-
+    Causal reasoning over knowledge graphs leveraging drug-perturbed and disease-specific
+    transcriptomic signatures.
+- language: html
+  registry: github
+  name: tims-bench
+  url: https://github.com/enveda/tims-bench
+  install: git clone https://github.com/enveda/tims-bench
+  official: true
+  api_client: false
+  description: >-
+    TIMS-Bench — community standards for benchmarking untargeted trapped-ion-mobility
+    metabolomics tools.
+- language: jupyter-notebook
+  registry: github
+  name: ethnobotany
+  url: https://github.com/enveda/ethnobotany
+  install: git clone https://github.com/enveda/ethnobotany
+  official: true
+  api_client: false
+  description: >-
+    Source code and data for "Modern drug discovery using ethnobotany: a large-scale
+    cross-cultural analysis of traditional medicine".
+registries_probed:
+- {registry: npm, query: enveda, result: 404}
+- {registry: pypi, query: 'enveda / envedabio / enveda-sdk / dreams-enveda', result: 404}
+- {registry: rubygems, query: enveda, result: 404}
+- {registry: packagist, query: enveda/enveda, result: 404}
+- {registry: nuget, query: enveda, result: 0 hits}
+- {registry: crates.io, query: enveda, result: no crate}
+- {registry: maven-central, query: enveda, result: no artifact}
+- {registry: pkg.go.dev, query: enveda, result: no module}

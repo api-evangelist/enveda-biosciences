@@ -1,0 +1,91 @@
+generated: '2026-08-04'
+method: derived
+source: >-
+  openapi/enveda-biosciences-content-openapi.yml, live headers, well-known/enveda-biosciences-well-known.yml
+  and security/enveda-biosciences-domain-security.yml
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: >-
+    openapi/enveda-biosciences-content-openapi.yml — DERIVED by API Evangelist from the
+    provider's live route-discovery document, not published by Enveda.
+  provider_published: false
+- id: json-schema
+  conforms: true
+  evidence: WordPress REST route args are JSON Schema fragments (type/enum/default/minimum/maximum)
+- id: rfc7617-http-basic
+  conforms: true
+  evidence: securitySchemes.applicationPassword — http/basic (WordPress Application Passwords)
+- id: rfc8288-web-linking
+  conforms: true
+  evidence: 'Link: <...>; rel="next" observed on GET /wp/v2/news; resources carry _links relations'
+- id: model-context-protocol
+  conforms: partial
+  evidence: >-
+    JSON-RPC MCP endpoint served at /wp-json/mcp/mcp-adapter-default-server; anonymous
+    tools/list and initialize both return 401, so protocol conformance could not be verified.
+- id: llms-txt
+  conforms: true
+  evidence: >-
+    https://enveda.com/llms.txt returns 200 text/plain in valid llms.txt shape (H1 name, then
+    ## Pages / ## Blog / ## News link lists). Saved verbatim to llms/enveda-biosciences-llms.txt.
+  provider_published: true
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use the WordPress {code,message,data.status} envelope, not application/problem+json
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme; /.well-known/oauth-authorization-server 404
+- id: openid-connect
+  conforms: false
+  evidence: /.well-known/openid-configuration 404
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt 404
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog 404
+- id: a2a
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json both 404 on enveda.com and
+    www.enveda.com
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming or webhook surface published
+- id: graphql
+  conforms: false
+  evidence: no /graphql route in any of the 22 registered WordPress REST namespaces
+- id: dnssec
+  conforms: true
+  evidence: security/enveda-biosciences-domain-security.yml — DNSKEY present on enveda.com
+- id: spf
+  conforms: true
+  evidence: SPF record present on enveda.com
+- id: dmarc
+  conforms: partial
+  evidence: DMARC record present with policy p=quarantine (not reject)
+- id: caa
+  conforms: false
+  evidence: no CAA record on enveda.com
+- id: hsts
+  conforms: false
+  evidence: no Strict-Transport-Security header on enveda.com
+- id: tls-1.3
+  conforms: true
+  evidence: TLSv1.3 negotiated on enveda.com
+compliance_program:
+  published: false
+  certifications: []
+  note: >-
+    No trust center and no SOC 2 / ISO 27001 / HIPAA / GDPR compliance page found on enveda.com
+    (/security/, /trust/, /compliance/, /responsible-disclosure/ all 404; trust.enveda.com does
+    not resolve). Enveda is a clinical-stage biotech running FDA-regulated trials, so it is
+    certainly subject to GCP/HIPAA obligations — but it publishes nothing about them, and this
+    pipeline records only what is published. No Compliance or TrustCenter pointer wired.
+regulatory_context:
+  note: >-
+    Informational only, derived from the company's own newsroom — not an API conformance claim.
+    Enveda runs FDA-cleared INDs (ENV-294, ENV-308, ENV-6946) and Phase 1/1b/2 clinical trials,
+    which sit under 21 CFR / ICH-GCP. None of that regulatory posture is expressed in any
+    machine-readable artifact on enveda.com.

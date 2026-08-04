@@ -1,0 +1,88 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Enveda Content API
+  version: 1.0.0
+extends: openapi/enveda-biosciences-content-openapi.yml
+x-generated: '2026-08-04'
+x-method: generated
+x-source: >-
+  API Evangelist enrichment pipeline. Captures our annotations on top of the DERIVED OpenAPI so
+  the derived document stays a faithful projection of https://enveda.com/wp-json/ and our
+  editorial layer stays separable from it.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-profile: https://apis.io/providers/enveda-biosciences/
+    x-apievangelist-artifacts:
+      authentication: authentication/enveda-biosciences-authentication.yml
+      conventions: conventions/enveda-biosciences-conventions.yml
+      errors: errors/enveda-biosciences-problem-types.yml
+      data_model: data-model/enveda-biosciences-data-model.yml
+      lifecycle: lifecycle/enveda-biosciences-lifecycle.yml
+      conformance: conformance/enveda-biosciences-conformance.yml
+      examples: examples/enveda-biosciences-examples.yml
+      skills: skills/_index.yml
+      agentic_access: agentic-access/enveda-biosciences-agentic-access.yml
+    x-provider-published: false
+    x-derivation-note: >-
+      Enveda publishes no OpenAPI, no developer portal and no API documentation. This document
+      was derived mechanically from the site's live WordPress REST route-discovery document and
+      describes the CMS content API, not an Enveda product API.
+- target: $.info
+  update:
+    x-rate-limit-note: >-
+      No rate-limit headers are advertised. The origin sits behind Cloudflare in front of WP
+      Engine; edge limits may apply without being signalled.
+    x-caching-note: 'Collection responses carry cache-control: max-age=600, must-revalidate.'
+- target: $.servers[0]
+  update:
+    x-observed-tls: TLSv1.3
+    x-observed-cdn: Cloudflare
+- target: $.paths['/wp/v2/news'].get
+  update:
+    description: >-
+      Enveda news releases. 34 published at harvest (2026-08-04) — funding rounds, FDA IND
+      clearances, Phase 1/1b/2 clinical readouts for ENV-294, ENV-308 and ENV-6946, executive
+      appointments and press pickups. Filter with the news-category taxonomy parameter.
+    x-record-count-observed: 34
+- target: $.paths['/wp/v2/person'].get
+  update:
+    description: >-
+      Enveda leadership, board and advisor profiles. 31 published at harvest. Group with the
+      person-category taxonomy: Leadership (15), Advisors (9), Board (7).
+    x-record-count-observed: 31
+- target: $.paths['/wp/v2/wpsl_stores'].get
+  update:
+    description: >-
+      Clinical-trial site directory, published through the WP Store Locator plugin and consumed
+      by the atopic-dermatitis and asthma recruitment pages. 40 sites published at harvest
+      (e.g. Icahn School of Medicine at Mount Sinai). The most substantive non-editorial dataset
+      on this API.
+    x-record-count-observed: 40
+- target: $.paths['/wp/v2/posts'].get
+  update:
+    description: >-
+      In-Veda, Enveda's editorial blog. 8 posts published at harvest, including "PRISM: A
+      foundation model for life's chemistry" and "The Chemical Code: An Opportunity Bigger Than
+      The Genetic Code". Classified by the `issue` taxonomy.
+    x-record-count-observed: 8
+- target: $.paths['/wp/v2/pages'].get
+  update:
+    x-record-count-observed: 26
+- target: $.paths['/wp/v2/media'].get
+  update:
+    x-record-count-observed: 262
+- target: $.paths['/wp/v2/comments'].get
+  update:
+    x-record-count-observed: 0
+    x-note: Commenting is closed site-wide; this collection is permanently empty.
+- target: $.paths['/wp/v2/tags'].get
+  update:
+    x-record-count-observed: 0
+    x-note: The core tag taxonomy is unused on this site; classification uses issue / news-category.
+- target: $.components.securitySchemes.applicationPassword
+  update:
+    x-anonymous-read: true
+    x-note: >-
+      Every GET in this document was verified to return 200 anonymously. Only write operations
+      require the Application Password.

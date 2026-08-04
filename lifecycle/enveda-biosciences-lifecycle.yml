@@ -1,0 +1,65 @@
+generated: '2026-08-04'
+method: probed
+source: https://enveda.com/wp-json/ + live probes 2026-08-04
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  docs: null
+  note: >-
+    Version is carried by the WordPress REST namespace segment. Enveda does not version an API
+    of its own — the namespace version tracks WordPress core.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation or sunset policy is published, and no operation in the derived OpenAPI is
+    marked deprecated. No Deprecation pointer wired.
+sla:
+  url: null
+  uptime_target: null
+  note: No SLA, uptime commitment or support tier is published.
+status_page:
+  url: null
+  probed:
+  - {url: 'https://status.enveda.com/', result: DNS does not resolve}
+  - {url: 'https://enveda.com/status/', result: 404}
+  - {url: 'https://enveda.statuspage.io/', result: '200 but redirects to https://www.atlassian.com/software/statuspage — the Statuspage marketing site, not an Enveda status page'}
+  note: >-
+    No status page exists. The enveda.statuspage.io hit is a false positive, verified by
+    following the redirect, and is recorded here so a later round does not re-report it. No
+    StatusPage pointer wired.
+changelog:
+  url: null
+  probed:
+  - {url: 'https://enveda.com/news/', result: '200 — corporate newsroom (34 releases), not an API changelog'}
+  - {url: 'https://enveda.com/in-veda/', result: '200 — the In-Veda editorial blog (8 posts), not an API changelog'}
+  note: >-
+    Enveda publishes no changelog or release notes for any API. The newsroom and In-Veda are
+    wired as Blog / News, not ChangeLog. No ChangeLog pointer wired.
+support:
+  contact_page: https://enveda.com/contact/
+  developer_support: null
+  note: >-
+    A general corporate contact form only. There is no developer support channel, forum,
+    community, Slack/Discord or issue tracker for any API.
+developer_surface_probes:
+  note: >-
+    Probed 2026-08-04 for any developer-facing surface. Enveda publishes none: no developer
+    portal, no documentation site, no API reference, no quickstart, no pricing and no API
+    sign-up. api.enveda.com and docs.enveda.com do not resolve. No pointer was wired for any of
+    these — the pages do not exist.
+  postman:
+    wired: false
+    finding: >-
+      A public Postman team with the handle "enveda" exists (id 1519254, created 2021-01-19,
+      1 workspace, 8 collections), but it carries no logo, no description, no verification and
+      surfaces no public workspace or collection in the Postman workspace search. It cannot be
+      attributed to Enveda Biosciences, so no Postman pointer was wired.
+hosting:
+  cdn: Cloudflare
+  origin: WP Engine
+  platform: WordPress (WP Engine, Rank Math SEO, WP Store Locator, HubSpot/leadin, Akismet plugins present in the REST route index)
+  tls: TLSv1.3
+  cert_expires: 'Sep 23 23:18:23 2026 GMT'
+deprecated_operations: []

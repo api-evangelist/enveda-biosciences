@@ -42,5 +42,10 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Enveda is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
+Enveda (Enveda Biosciences) is a Boulder, Colorado based clinical-stage biotechnology company founded in 2019 that discovers medicines by decoding the chemistry of the natural world — combining high-throughput mass spectrometry, metabolomics, robotics and machine learning (including PRISM, a foundation model trained on over a billion small-molecule mass spectra) to translate plant-derived molecules into drug candidates.
+
+Enveda publishes no product or developer API. The machine-readable surface on enveda.com is a published `llms.txt` plus the WordPress REST API (`wp/v2`) that serves the company newsroom, In-Veda blog, leadership profiles, clinical-trial site directory and media library as JSON, alongside a WordPress MCP Adapter endpoint that is present but authentication-gated. Its open science is published as research code and data in the [github.com/enveda](https://github.com/enveda) organization.
+
+- https://enveda.com/
+- https://github.com/enveda
 - https://forgeglobal.com/enveda-biosciences_stock/

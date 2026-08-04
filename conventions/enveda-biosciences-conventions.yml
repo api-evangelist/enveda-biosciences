@@ -1,0 +1,102 @@
+generated: '2026-08-04'
+method: derived
+source: >-
+  openapi/enveda-biosciences-content-openapi.yml (derived from https://enveda.com/wp-json/)
+  plus live response headers observed on GET /wp-json/wp/v2/news, 2026-08-04
+api: enveda-biosciences:content
+authentication:
+  anonymous_read: true
+  scheme: WordPress Application Passwords over HTTP Basic
+  authorization_endpoint: https://enveda.com/wp-admin/authorize-application.php
+  browser_scheme: logged-in cookie + X-WP-Nonce header
+  artifact: authentication/enveda-biosciences-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency key header or parameter is exposed on any of the 341 routes in the discovery
+    document, and none is documented. No Idempotency pointer is wired in apis.yml — Enveda has
+    no idempotency contract to advertise, and asserting one would be fabrication.
+pagination:
+  style: page-number
+  request_params:
+  - {name: page, type: integer, default: 1, minimum: 1}
+  - {name: per_page, type: integer, default: 10, minimum: 1, maximum: 100}
+  - {name: offset, type: integer, note: available on collection routes}
+  response_headers:
+  - {name: X-WP-Total, meaning: total items in the collection}
+  - {name: X-WP-TotalPages, meaning: total pages at the current per_page}
+  link_header: 'RFC 8288 Link header with rel="next" / rel="prev"'
+  observed: 'GET /wp/v2/news?per_page=1 -> X-WP-Total: 34, X-WP-TotalPages: 34, Link: <...page=2>; rel="next"'
+field_selection:
+  sparse_fields:
+    param: _fields
+    note: comma-separated list of top-level fields to return
+  expansion:
+    param: _embed
+    note: >-
+      Inlines linked resources (author, wp:featuredmedia, wp:term, replies) into _embedded,
+      driven by the _links relations each resource carries.
+  context:
+    param: context
+    values: [view, embed, edit]
+    default: view
+    note: edit context requires authentication
+ordering_and_filtering:
+  params: [search, order, orderby, slug, status, after, before, modified_after, modified_before,
+    include, exclude, categories, tags, author, parent, menu_order]
+  custom_taxonomy_filters: [news-category, person-category, issue, wpsl_store_category]
+  note: taken verbatim from the route args in the discovery document
+metadata:
+  field: meta
+  note: >-
+    Registered post meta. The site also returns an `acf` object on every resource (Advanced
+    Custom Fields) — empty array on the sampled `wpsl_stores` and `issue` payloads.
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or correlation header is emitted. Cloudflare returns cf-ray, which is an edge
+    trace identifier, not an application request id.
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  namespaces_present:
+  - wp/v2
+  - wp-site-health/v1
+  - wp-block-editor/v1
+  - wp-abilities/v1
+  - mcp
+  - oembed/1.0
+  - rankmath/v1
+  - google-site-kit/v1
+  - wpsl/v1
+  - redirection/v1
+  - akismet/v1
+  - leadin/v1
+  - wpe/cache-plugin/v1
+  artifact: lifecycle/enveda-biosciences-lifecycle.yml
+error_envelope:
+  format: wordpress-rest
+  rfc9457: false
+  shape: '{"code": "<string>", "message": "<human string>", "data": {"status": <int>}}'
+  observed: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+  artifact: errors/enveda-biosciences-problem-types.yml
+rate_limiting:
+  documented: false
+  headers_observed: []
+  note: >-
+    No X-RateLimit-* or Retry-After headers observed on any anonymous GET. The site sits behind
+    Cloudflare in front of WP Engine, so edge rate limiting may exist but is not advertised.
+    robots.txt sets no Crawl-delay and explicitly allows every named AI crawler.
+caching:
+  headers_observed:
+  - 'cache-control: max-age=600, must-revalidate'
+  - 'x-cacheable: SHORT'
+  - 'x-cache: MISS / HIT (WP Engine)'
+  - 'cf-cache-status: MISS'
+  - last-modified
+  note: 10-minute edge TTL on wp-json collection responses.
+robots:
+  api_indexing: 'x-robots-tag: noindex on wp-json responses'
+cors:
+  access_control_allow_headers: [Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type]
+  access_control_expose_headers: [X-WP-Total, X-WP-TotalPages, Link]
