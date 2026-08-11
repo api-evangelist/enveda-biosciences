@@ -37,44 +37,13 @@ tags:
 - Research
 - Content
 apis:
-- aid: enveda-biosciences:content
-  name: Enveda Content API (WordPress REST wp/v2)
-  description: 'The anonymously readable WordPress REST API that enveda.com serves at
-    /wp-json/wp/v2 — news releases (the `news` custom post type, 34 published), In-Veda blog
-    posts, marketing and clinical-trial recruitment pages, leadership / board / advisor profiles
-    (`person`, 31 published), a clinical-trial site directory (`wpsl_stores`, 40 published), the
-    media library, taxonomies and a site-wide search endpoint, all as JSON with page/per_page
-    pagination and X-WP-Total / X-WP-TotalPages headers. This is the CMS content API, not an
-    Enveda product API; Enveda publishes no OpenAPI for it, so the definition in this repo was
-    derived mechanically from the live route-discovery document at https://enveda.com/wp-json/.'
-  humanURL: https://enveda.com/news/
-  baseURL: https://enveda.com/wp-json/wp/v2
-  tags:
-  - Content
-  - News
-  - People
-  - Clinical Trials
-  - Search
-  - Media
-  properties:
-  - type: OpenAPI
-    url: openapi/enveda-biosciences-content-openapi.yml
-  - type: Overlay
-    url: overlays/enveda-biosciences-content-overlay.yaml
-  - type: DataModel
-    url: data-model/enveda-biosciences-data-model.yml
-  - type: ErrorCatalog
-    url: errors/enveda-biosciences-problem-types.yml
-  - type: Examples
-    url: examples/enveda-biosciences-examples.yml
 - aid: enveda-biosciences:mcp
   name: Enveda MCP Server (WordPress MCP Adapter)
-  description: 'A Model Context Protocol server endpoint advertised in the enveda.com WordPress
-    REST route index under the "mcp" namespace and served at
-    /wp-json/mcp/mcp-adapter-default-server. The endpoint is live but authentication-gated: an
-    anonymous JSON-RPC tools/list returns HTTP 401 rest_forbidden, as does initialize and the
-    companion wp-abilities/v1 abilities registry, so the published tool set could not be
-    enumerated.'
+  description: >-
+    A Model Context Protocol server endpoint advertised in the enveda.com WordPress REST route index under
+    the "mcp" namespace and served at /wp-json/mcp/mcp-adapter-default-server. The endpoint is live but
+    authentication-gated: an anonymous JSON-RPC tools/list returns HTTP 401 rest_forbidden, as does initialize
+    and the companion wp-abilities/v1 abilities registry, so the published tool set could not be enumerated.
   humanURL: https://enveda.com/wp-json/mcp
   baseURL: https://enveda.com/wp-json/mcp/mcp-adapter-default-server
   tags:
@@ -85,6 +54,214 @@ apis:
     url: mcp/enveda-biosciences-mcp.yml
   - type: ToolCrosswalk
     url: mcp/enveda-biosciences-tool-crosswalk.yml
+- aid: enveda-biosciences:enveda-biosciences-comments-api
+  name: Enveda Comments API
+  description: The Comments API from Enveda — 2 operation(s) for comments.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-comments-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-discovery-api
+  name: Enveda Discovery API
+  description: The Discovery API from Enveda — 6 operation(s) for discovery.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-discovery-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-issues-api
+  name: Enveda Issues API
+  description: The Issues API from Enveda — 2 operation(s) for issues.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Issues
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-issues-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-media-api
+  name: Enveda Media API
+  description: The Media API from Enveda — 3 operation(s) for media.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-media-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-news-api
+  name: Enveda News API
+  description: The News API from Enveda — 4 operation(s) for news.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - News
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-news-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-pages-api
+  name: Enveda Pages API
+  description: The Pages API from Enveda — 2 operation(s) for pages.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-pages-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-people-api
+  name: Enveda People API
+  description: The People API from Enveda — 4 operation(s) for people.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - People
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-people-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-posts-api
+  name: Enveda Posts API
+  description: The Posts API from Enveda — 2 operation(s) for posts.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Posts
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-posts-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-search-api
+  name: Enveda Search API
+  description: The Search API from Enveda — 1 operation(s) for search.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-search-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-settings-api
+  name: Enveda Settings API
+  description: The Settings API from Enveda — 1 operation(s) for settings.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-settings-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-taxonomy-api
+  name: Enveda Taxonomy API
+  description: The Taxonomy API from Enveda — 4 operation(s) for taxonomy.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Taxonomy
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-taxonomy-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-trial-sites-api
+  name: Enveda Trial Sites API
+  description: The Trial Sites API from Enveda — 4 operation(s) for trial sites.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Trial Sites
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-trial-sites-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
+- aid: enveda-biosciences:enveda-biosciences-users-api
+  name: Enveda Users API
+  description: The Users API from Enveda — 3 operation(s) for users.
+  humanURL: https://enveda.com/news/
+  baseURL: https://enveda.com/wp-json/wp/v2
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/enveda-biosciences-users-api-openapi.yml
+  - type: DataModel
+    url: data-model/enveda-biosciences-data-model.yml
+  - type: ErrorCatalog
+    url: errors/enveda-biosciences-problem-types.yml
+  - type: Examples
+    url: examples/enveda-biosciences-examples.yml
 x-enrichment:
   date: '2026-08-04'
   status: enriched
@@ -96,6 +273,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/enveda-biosciences-content-overlay.yaml
 - type: Website
   url: https://enveda.com/
 - type: About
