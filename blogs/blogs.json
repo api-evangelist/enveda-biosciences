@@ -2,6 +2,20 @@
   "repo": "enveda-biosciences",
   "feeds": [
     {
+      "source": "https://enveda.com/purpose/feed/",
+      "feed_url": "https://enveda.com/purpose/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://enveda.com/in-veda/feed/",
+      "feed_url": "https://enveda.com/in-veda/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://enveda.com/purpose/",
       "feed_url": "https://enveda.com/purpose/feed/",
       "title": "",
@@ -17,5 +31,5 @@
     }
   ],
   "post_count": 0,
-  "fetched": "2026-08-06T14:08:46Z"
+  "fetched": "2026-08-15T12:22:01Z"
 }
