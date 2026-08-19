@@ -1,0 +1,53 @@
+{
+  "provider": "enveda-biosciences",
+  "sources": [
+    "enveda-biosciences-comments-api-openapi.yml",
+    "enveda-biosciences-discovery-api-openapi.yml",
+    "enveda-biosciences-issues-api-openapi.yml",
+    "enveda-biosciences-media-api-openapi.yml",
+    "enveda-biosciences-news-api-openapi.yml",
+    "enveda-biosciences-pages-api-openapi.yml",
+    "enveda-biosciences-people-api-openapi.yml",
+    "enveda-biosciences-posts-api-openapi.yml",
+    "enveda-biosciences-search-api-openapi.yml",
+    "enveda-biosciences-settings-api-openapi.yml",
+    "enveda-biosciences-taxonomy-api-openapi.yml",
+    "enveda-biosciences-trial-sites-api-openapi.yml",
+    "enveda-biosciences-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "enveda-biosciences-comments-api-openapi.yml",
+    "enveda-biosciences-discovery-api-openapi.yml",
+    "enveda-biosciences-issues-api-openapi.yml",
+    "enveda-biosciences-media-api-openapi.yml",
+    "enveda-biosciences-news-api-openapi.yml",
+    "enveda-biosciences-pages-api-openapi.yml",
+    "enveda-biosciences-people-api-openapi.yml",
+    "enveda-biosciences-posts-api-openapi.yml",
+    "enveda-biosciences-search-api-openapi.yml",
+    "enveda-biosciences-settings-api-openapi.yml",
+    "enveda-biosciences-taxonomy-api-openapi.yml",
+    "enveda-biosciences-trial-sites-api-openapi.yml",
+    "enveda-biosciences-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "enveda-biosciences-comments-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-discovery-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-issues-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-media-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-news-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-pages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-people-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-posts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-search-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-settings-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-taxonomy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-trial-sites-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "enveda-biosciences-users-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}
