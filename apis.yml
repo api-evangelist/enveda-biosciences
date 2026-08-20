@@ -29,6 +29,19 @@ tags:
 - Drug Discovery
 - Life Sciences
 - Artificial Intelligence
+- Machine-Learning
+- Metabolomics
+- Natural Products
+- Pharmaceuticals
+- Clinical Trials
+- Research
+- Content
+tags_raw:
+- Company
+- Biotechnology
+- Drug Discovery
+- Life Sciences
+- Artificial Intelligence
 - Machine Learning
 - Metabolomics
 - Natural Products
@@ -252,6 +265,8 @@ apis:
   humanURL: https://enveda.com/news/
   baseURL: https://enveda.com/wp-json/wp/v2
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
