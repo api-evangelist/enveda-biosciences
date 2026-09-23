@@ -3,10 +3,7 @@ info:
   title: Enveda Content API (WordPress REST wp/v2) Settings API
   version: wp/v2
   summary: 'Public read surface of enveda.com content: news releases, In-Veda blog posts, marketing pages, leadership profiles, clinical-trial site listings, media and site search.'
-  description: 'Enveda publishes enveda.com on WordPress, which exposes the WordPress REST API at https://enveda.com/wp-json/. The wp/v2 namespace is anonymously readable and returns the company''s news releases, In-Veda blog posts, marketing pages, leadership and team profiles (`person`), clinical-trial site listings (`wpsl_stores`), the media library, taxonomies and a site-wide search endpoint as JSON.
-
-
-    This document was DERIVED mechanically by API Evangelist from the route-discovery document served at https://enveda.com/wp-json/ on 2026-08-04 — every path, method and parameter below is taken verbatim from that descriptor. Enveda does not publish an OpenAPI definition of its own, and this is not a product API: it is the content API the CMS exposes. Write operations exist on these routes but require authentication (WordPress Application Passwords over HTTP Basic).'
+  description: Enveda publishes enveda.com on WordPress, which exposes the WordPress REST API at https://enveda.com/wp-json/.
   contact:
     name: Enveda
     url: https://enveda.com/
@@ -354,26 +351,26 @@ paths:
       - applicationPassword: []
 components:
   responses:
-    Unauthorized:
-      description: Authentication required or rejected (rest_forbidden / rest_not_logged_in).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/WpError'
     BadRequest:
       description: Invalid parameter (rest_invalid_param).
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/WpError'
-    Forbidden:
-      description: Authenticated but not permitted (rest_cannot_view / rest_forbidden).
+    Unauthorized:
+      description: Authentication required or rejected (rest_forbidden / rest_not_logged_in).
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/WpError'
     NotFound:
       description: No route or resource matched (rest_no_route / rest_post_invalid_id).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/WpError'
+    Forbidden:
+      description: Authenticated but not permitted (rest_cannot_view / rest_forbidden).
       content:
         application/json:
           schema:

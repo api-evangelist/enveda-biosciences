@@ -1,13 +1,18 @@
-generated: '2026-08-04'
+generated: '2026-09-19'
 method: probed
 source: live GET probes of the /.well-known/ surface on every enveda.com host, 2026-08-04
 host: https://enveda.com
-note: >-
-  Enveda serves no /.well-known/ discovery document at all. Every RFC 8615 path below returned
-  the WordPress 404 page (text/html), including the two agent-card paths. Recorded as observed
-  — absence is valid data, and nothing was authored on Enveda's behalf. There is no separate
-  API host: api.enveda.com and docs.enveda.com do not resolve in DNS, so enveda.com (and its
-  www alias) is the only host with a discovery surface to probe.
+note: 'Enveda serves no /.well-known/ discovery document at all. Every RFC 8615 path below returned the
+  WordPress 404 page (text/html), including the two agent-card paths. Recorded as observed — absence is
+  valid data, and nothing was authored on Enveda''s behalf. There is no separate API host: api.enveda.com
+  and docs.enveda.com do not resolve in DNS, so enveda.com (and its www alias) is the only host with a
+  discovery surface to probe.
+
+
+  MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s primary
+  hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed and
+  were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'
 hosts_probed:
 - host: enveda.com
   resolves: true
@@ -19,57 +24,71 @@ hosts_probed:
 - host: docs.enveda.com
   resolves: false
   note: NXDOMAIN — no docs host
-documents:
-- path: /.well-known/security.txt
-  spec: RFC 9116
-  status: 404
-- path: /.well-known/openid-configuration
-  spec: OpenID Connect Discovery 1.0
-  status: 404
-- path: /.well-known/oauth-authorization-server
-  spec: RFC 8414
-  status: 404
-- path: /.well-known/oauth-protected-resource
-  spec: RFC 9728
-  status: 404
-- path: /.well-known/api-catalog
-  spec: RFC 9727
-  status: 404
-- path: /.well-known/ai-plugin.json
-  spec: OpenAI plugin manifest
-  status: 404
-- path: /.well-known/agent-card.json
-  spec: A2A 1.0.0
-  status: 404
-  also_probed_on: www.enveda.com (404)
-- path: /.well-known/agent.json
-  spec: A2A pre-0.3 legacy
-  status: 404
-  also_probed_on: www.enveda.com (404)
-- path: /.well-known/dnt-policy.txt
-  spec: EFF Do Not Track policy
-  status: 404
 adjacent_discovery_found:
 - path: /llms.txt
   status: 200
   content_type: text/plain
   file: ../llms/enveda-biosciences-llms.txt
-  note: >-
-    Not a /.well-known/ document, but the one machine-readable discovery file Enveda actually
-    publishes. Saved verbatim; wired as type LLMsTxt.
+  note: Not a /.well-known/ document, but the one machine-readable discovery file Enveda actually publishes.
+    Saved verbatim; wired as type LLMsTxt.
 - path: /robots.txt
   status: 200
-  note: >-
-    Explicitly ALLOWS the AI crawlers by name — GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot,
-    Claude-Web, anthropic-ai, PerplexityBot, Perplexity-User, Applebot, Applebot-Extended and
-    Google-Extended are each given an Allow: / rule. Only /wp-admin/ is disallowed.
+  note: 'Explicitly ALLOWS the AI crawlers by name — GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-Web,
+    anthropic-ai, PerplexityBot, Perplexity-User, Applebot, Applebot-Extended and Google-Extended are
+    each given an Allow: / rule. Only /wp-admin/ is disallowed.'
 - path: /wp-json/
   status: 200
   content_type: application/json
-  note: >-
-    The WordPress REST route-discovery document — 341 routes across 22 namespaces. This is the
-    real machine-readable contract on enveda.com and is the source the OpenAPI in openapi/ was
-    derived from. Saved at openapi/_source/enveda-biosciences-wp-json-root.json.
+  note: The WordPress REST route-discovery document — 341 routes across 22 namespaces. This is the real
+    machine-readable contract on enveda.com and is the source the OpenAPI in openapi/ was derived from.
+    Saved at openapi/_source/enveda-biosciences-wp-json-root.json.
 - path: /sitemap.xml
   status: 200
   note: Rank Math sitemap index (post, page, news, category, person-category, news-category).
+hosts:
+- host: https://enveda.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/dnt-policy.txt
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: enveda-biosciences-enveda-oauth-protected-resource.json
+    bytes: 181
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: enveda-biosciences-enveda-oauth-authorization-server.json
+    bytes: 531
+  path_echo_control: passed
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://enveda.com
+    path: /.well-known/oauth-protected-resource
+    file: enveda-biosciences-enveda-oauth-protected-resource.json
+  - host: https://enveda.com
+    path: /.well-known/oauth-authorization-server
+    file: enveda-biosciences-enveda-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
