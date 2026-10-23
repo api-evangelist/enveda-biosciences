@@ -16,20 +16,20 @@
       "method": "feed"
     },
     {
-      "source": "https://enveda.com/purpose/feed/",
-      "feed_url": "https://enveda.com/purpose/feed/",
-      "title": "",
-      "saved": 0,
-      "method": "feed"
-    },
-    {
       "source": "https://enveda.com/in-veda/feed/",
       "feed_url": "https://enveda.com/in-veda/feed/",
       "title": "",
       "saved": 0,
       "method": "feed"
+    },
+    {
+      "source": "https://enveda.com/purpose/feed/",
+      "feed_url": "https://enveda.com/purpose/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 8,
+  "fetched": "2026-10-17T14:53:57Z"
 }
